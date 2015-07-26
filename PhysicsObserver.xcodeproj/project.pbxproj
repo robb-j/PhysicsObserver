@@ -11,6 +11,7 @@
 		D4939BE61B6542EB002E1F8C /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4939BE51B6542EB002E1F8C /* PhysicsCategory.swift */; };
 		D4939BE91B65524F002E1F8C /* ContactManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4939BE71B65524F002E1F8C /* ContactManager.swift */; };
 		D4939BEA1B65524F002E1F8C /* ContactObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4939BE81B65524F002E1F8C /* ContactObserver.swift */; };
+		D4939BF51B6555BD002E1F8C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4939BF41B6555BD002E1F8C /* Default-568h@2x.png */; };
 		D4B7D7E61A69A41B00B93F5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7D7E51A69A41B00B93F5C /* AppDelegate.swift */; };
 		D4B7D7EA1A69A41B00B93F5C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7D7E91A69A41B00B93F5C /* GameScene.swift */; };
 		D4B7D7EC1A69A41B00B93F5C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7D7EB1A69A41B00B93F5C /* GameViewController.swift */; };
@@ -35,6 +36,7 @@
 		D4939BE51B6542EB002E1F8C /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		D4939BE71B65524F002E1F8C /* ContactManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactManager.swift; sourceTree = "<group>"; };
 		D4939BE81B65524F002E1F8C /* ContactObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactObserver.swift; sourceTree = "<group>"; };
+		D4939BF41B6555BD002E1F8C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4B7D7E01A69A41B00B93F5C /* PhysicsObserver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsObserver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B7D7E41A69A41B00B93F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4B7D7E51A69A41B00B93F5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		D4B7D7D71A69A41B00B93F5C = {
 			isa = PBXGroup;
 			children = (
+				D4939BF41B6555BD002E1F8C /* Default-568h@2x.png */,
 				D4B7D7E21A69A41B00B93F5C /* PhysicsObserver */,
 				D4B7D7FC1A69A41B00B93F5C /* PhysicsObserverTests */,
 				D4B7D7E11A69A41B00B93F5C /* Products */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4B7D7F41A69A41B00B93F5C /* LaunchScreen.xib in Resources */,
+				D4939BF51B6555BD002E1F8C /* Default-568h@2x.png in Resources */,
 				D4B7D7F11A69A41B00B93F5C /* Images.xcassets in Resources */,
 				D4B7D7EF1A69A41B00B93F5C /* Main.storyboard in Resources */,
 			);
