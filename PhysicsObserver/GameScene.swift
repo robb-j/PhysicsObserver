@@ -12,11 +12,11 @@ class GameScene: SKScene {
 	
 	
 	//* MARK: - Scene Lifecycle
-    override func didMoveToView(view: SKView) {
+	override func didMoveToView(view: SKView) {
 		
 		
 		// Set the contact delegate to a new ContactManager
-		self.physicsWorld.contactDelegate = ContactManager()
+		self.physicsWorld.contactDelegate = ContactManager.shared
 		
 		
 		
@@ -28,39 +28,37 @@ class GameScene: SKScene {
 		
 		
 		
-		// Add an 'A' ship
+		// Create a 'B' Category ship
 		let ship = createShipAt(CGPoint(x: size.width/2, y: size.height/2 ))
+		ship.physicsBody?.categoryBitMask = PhysicsCategory.B
+		ship.color = SKColor.cyanColor()
+		ship.colorBlendFactor = 0.4
 		addChild(ship)
 		
 		
-		// Make it collide with ship B
-		let body = SKPhysicsBody(rectangleOfSize: ship.size)
-		body.categoryBitMask = PhysicsCategory.A
-		body.collisionBitMask = PhysicsCategory.B
-		body.contactTestBitMask = PhysicsCategory.B
-		ship.physicsBody = body
 		
-		
-		
-		// Add an fancy observer!
-		ContactManager.shared?.addContactObservation(self, on: ship, with: PhysicsCategory.B) { node, category, contact, type in
+		// Listen for collisions
+		ContactManager.shared.add(ContactObserver.betweenCategory(category: PhysicsCategory.A, andCategory: PhysicsCategory.B, 
+			observation: { (contact, phase) -> (Void) in
 			
-			switch type {
+			if phase == .Began {
 				
-			case .Joining:
-				println("Hit!")
-				
-			default: 
-				break
+				println("Hit")
 			}
-		}
-    }
+			
+		}))
+		
+		
+		ContactManager.shared.remove(ContactType.Category(1, 7))
+		ContactManager.shared.remove(ContactType.Node(ship, ship))
+		ContactManager.shared.remove(ContactType.NodeCategory(ship, 7))
+		
+	}
 	
 	override func willMoveFromView(view: SKView) {
 		
-		// This is important!
-		// Must tell the Contact manager when the scene is removed
-		ContactManager.shared?.sceneWasRemoved()
+		// Make sure all observers get removed
+		ContactManager.shared.removeAllContactObservers()
 	}
 	
 	private func createShipAt(position: CGPoint) -> SKSpriteNode {
@@ -70,26 +68,26 @@ class GameScene: SKScene {
 		ship.position = position
 		ship.setScale(0.2)
 		
+		
+		// Add a physics body
+		let body = SKPhysicsBody(rectangleOfSize: CGSize(width: ship.size.width * 0.7, height: ship.size.height * 0.7))
+		body.categoryBitMask = PhysicsCategory.A
+		body.collisionBitMask = PhysicsCategory.All
+		body.contactTestBitMask = PhysicsCategory.B
+		ship.physicsBody = body
+		
+		
 		return ship
 	}
 	
 	
 	//* MARK: - Scene Touches
-	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+	override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         
         for touch: AnyObject in touches {
-            
 			
-			// Add a 'B' ship where the touch was
-			let ship = createShipAt(touch.locationInNode(self))
-			addChild(ship)
-			
-			
-			// Add physics to it
-			let body = SKPhysicsBody(rectangleOfSize: ship.size)
-			body.categoryBitMask = PhysicsCategory.B
-			ship.physicsBody = body
-			
+				// Add a 'B' ship where the touch was
+				addChild(createShipAt(touch.locationInNode(self)))
         }
     }
 	

@@ -1,11 +1,12 @@
-# A Simple SpriteKit Contact Manager
+# A SpriteKit Contact Manager
 - Rob Anderson
 - robb-j
-- Jan 2015
+- Jul 2015
 
 
 ## Features
 - Use closures for your physics contacts
+- Add callbacks different ways; between nodes, categories or both
 
 
 ## Instructions For Setup
@@ -14,31 +15,66 @@
 2. Type: `cd to/your/project` (where your .xcodeproj is)
 3. Type: `git submodule add git@github.com:robb-j/PhysicsObserver.git`
 4. Open your project in Xcode
-5. Import the files in PhysicsObserver/Observer to your project
+5. Import the files in PhysicsObserver/Observer to your project (Make sure to deselect 'Copy items if needed')
 
 #### Manually (Dirty)
 1. Download the repository
 2. Open Xcode
 3. Add the files in PhysicsObserver/Observer to your project
 
-#### Final Step (Required)
-In your SKScene subclass:
-- Override `didMoveToView` and add `self.physicsWorld.contactDelegate = ContactManager()`
-- Override `willMoveFromView:` and add `ContactManager.shared?.sceneWasRemoved()`
-
-
 
 ## Usage
+### Setup
+- After you've created your scene set the contact delegate
+```swift
+myScene.physicsWorld.contactDelegate = ContactManager.shared
+```
+
 ### Adding an Observation
-- Just use `ContactManager.shared?.addContactObservation(self, on: <#Node#>, with: PhysicsCategory.<#Name#>) { node, category, contact, type in <#Code#> }`
-- Inside that you can `switch type` to get whether the contact is a join or leave
-- You can also access that the properties of the collision with `contact`
+- There are 3 types of observations you can add: between two nodes, between a node & category and between two categories
+- Node you still have to setup the collision categories & contactMasks yourself
+
+##### Between Two Nodes
+```swift
+ContactManager.shared.add(ContactObserver.betweenNode(node: <#Node A#>,
+	andNode: <#Node B#>,
+	observation: { (contact, phase) -> Void in
+	
+	<# Callback #>
+}))
+```
+
+##### Between A Node and Category
+```swift
+ContactManager.shared.add(ContactObserver.betweenNode(node: <#Node#>,
+	andCategory: <#Category#>,
+	observation: { (contact, phase) -> Void in
+	
+	<# Callback #>
+}))
+```
+
+##### Between Two Categories
+```swift
+ContactManager.shared.add(ContactObserver.betweenCategory(category: <#Cat A#>,
+	andCategory: <#Cat B#>,
+	observation: { (contact, phase) -> Void in
+	
+	<# Callback #>
+}))
+```
 
 ### Removing an Observer
-- Just use `ContactManager.shared?.removeContactObservationsFrom(<#Observer#>)`
-- Which removes all observations from that observer
+- There's a way of removing observations for each type of observation, using `ContactType`
+```swift
+ContactManager.shared.remove(ContactType.Category(<#Cat A#>, <#Cat B#>))
+ContactManager.shared.remove(ContactType.Node(<#Node A#>, <#Node B#>))
+ContactManager.shared.remove(ContactType.NodeCategory(<#Node#>, <Category##>))
+```
 
 
 ## Tips
-- Remember to call `ContactManager.shared?.sceneWasRemoved()` when your scene is removed
+- Remember to call `ContactManager.shared.removeAllContactObservers()` when your scene is removed
+- If you copy the code directly into xcode the <# Somthing #> will turn into insertion bubbles that you can tab through
 - You can access the swiftdoc on public functions with a 3 finger tap on the function name
+- You can use static properties on a struct to provide simpler access to physics categories, see `PhysicsCategories.swift`

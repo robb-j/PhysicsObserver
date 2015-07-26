@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
         let scene = GameScene(size: self.view.frame.size)
 		
 		// Configure the view.
-		let skView = self.view as SKView
+		let skView = self.view as! SKView
 		skView.ignoresSiblingOrder = true
 		scene.scaleMode = .AspectFill
 		
