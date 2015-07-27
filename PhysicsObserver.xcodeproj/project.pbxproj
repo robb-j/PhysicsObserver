@@ -81,6 +81,7 @@
 		D4939BE11B654067002E1F8C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4939BF41B6555BD002E1F8C /* Default-568h@2x.png */,
 				D4B7D7ED1A69A41B00B93F5C /* Main.storyboard */,
 				D4B7D7F01A69A41B00B93F5C /* Images.xcassets */,
 				D4B7D7F21A69A41B00B93F5C /* LaunchScreen.xib */,
@@ -103,7 +104,6 @@
 		D4B7D7D71A69A41B00B93F5C = {
 			isa = PBXGroup;
 			children = (
-				D4939BF41B6555BD002E1F8C /* Default-568h@2x.png */,
 				D4B7D7E21A69A41B00B93F5C /* PhysicsObserver */,
 				D4B7D7FC1A69A41B00B93F5C /* PhysicsObserverTests */,
 				D4B7D7E11A69A41B00B93F5C /* Products */,

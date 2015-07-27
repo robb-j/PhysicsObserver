@@ -71,6 +71,10 @@ ContactManager.shared.remove(ContactType.Category(<#Cat A#>, <#Cat B#>))
 ContactManager.shared.remove(ContactType.Node(<#Node A#>, <#Node B#>))
 ContactManager.shared.remove(ContactType.NodeCategory(<#Node#>, <Category##>))
 ```
+- You can also remove any observation on a given SKNode
+```swift
+ContactManager.shared.remove(ContactType.OnNode(<#Node#>))
+```
 
 
 ## Tips

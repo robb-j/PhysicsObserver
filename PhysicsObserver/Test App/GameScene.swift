@@ -48,11 +48,6 @@ class GameScene: SKScene {
 			
 		}))
 		
-		
-		ContactManager.shared.remove(ContactType.Category(1, 7))
-		ContactManager.shared.remove(ContactType.Node(ship, ship))
-		ContactManager.shared.remove(ContactType.NodeCategory(ship, 7))
-		
 	}
 	
 	override func willMoveFromView(view: SKView) {
