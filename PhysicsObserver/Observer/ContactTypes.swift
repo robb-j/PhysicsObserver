@@ -52,7 +52,7 @@ func == (contact: ContactObserver, type: ContactType) -> Bool {
 	switch type {
 		
 		
-	case .Category(let catA, let catB) where contact is CategoryContactObserver:
+	case .Category(_, _) where contact is CategoryContactObserver:
 		
 		let cc = contact as! CategoryContactObserver
 		return cc.categoryA == cc.categoryA && cc.categoryB == cc.categoryB
