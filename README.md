@@ -3,6 +3,7 @@
 - robb-j
 - Jul 2015
 
+> **Archived** – This project has been archived and is generally unsupported
 
 ## Features
 - Use closures for your physics contacts
